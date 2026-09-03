@@ -1,0 +1,213 @@
+// Generated schema — modeled after beautyhqio conventions.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(ANALYST)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  ANALYST
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actorName String?
+  action    String
+  entity    String
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+}
+
+model Classroom {
+  id        String   @id @default(cuid())
+  name String
+  teacher String
+  subject String
+  gradeLevel String
+  enrollment Int
+  status String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  students Student[]
+  engagementSignals EngagementSignal[]
+  learningGaps LearningGap[]
+  exerciseRecommendations ExerciseRecommendation[]
+  interventions Intervention[]
+  motivationalCampaigns MotivationalCampaign[]
+  teacherAlerts TeacherAlert[]
+  guardianContacts GuardianContact[]
+  outcomeMeasures OutcomeMeasure[]
+  classHeatmaps ClassHeatmap[]
+  resourceLibraryItems ResourceLibraryItem[]
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  name String
+  studentId String
+  grade String
+  engagementScore Float
+  status String
+  enrolledAt DateTime?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EngagementSignal {
+  id        String   @id @default(cuid())
+  studentRef String
+  signalType String
+  strength String
+  source String
+  status String
+  observedAt DateTime?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LearningGap {
+  id        String   @id @default(cuid())
+  studentRef String
+  concept String
+  evidence String
+  severity String
+  status String
+  identifiedAt DateTime?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ExerciseRecommendation {
+  id        String   @id @default(cuid())
+  studentRef String
+  concept String
+  exercise String
+  difficulty String
+  status String
+  source String
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Intervention {
+  id        String   @id @default(cuid())
+  studentRef String
+  kind String
+  plan String
+  status String
+  startedAt DateTime?
+  owner String
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MotivationalCampaign {
+  id        String   @id @default(cuid())
+  name String
+  strategy String
+  audience String
+  status String
+  launchedAt DateTime?
+  outcome String?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TeacherAlert {
+  id        String   @id @default(cuid())
+  studentRef String
+  concern String
+  priority String
+  status String
+  raisedAt DateTime?
+  action String?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GuardianContact {
+  id        String   @id @default(cuid())
+  studentRef String
+  guardian String
+  channel String
+  purpose String
+  status String
+  sentAt DateTime?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OutcomeMeasure {
+  id        String   @id @default(cuid())
+  studentRef String
+  metric String
+  before Float
+  after Float
+  window String
+  status String
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ClassHeatmap {
+  id        String   @id @default(cuid())
+  period String
+  metric String
+  gridRef String
+  avgValue Float
+  status String
+  computedAt DateTime?
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ResourceLibraryItem {
+  id        String   @id @default(cuid())
+  title String
+  kind String
+  conceptTag String
+  url String
+  status String
+  difficulty String
+  classroomId String?
+  classroom Classroom? @relation(fields: [classroomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
