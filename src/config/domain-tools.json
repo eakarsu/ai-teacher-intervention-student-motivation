@@ -1,0 +1,59 @@
+[
+  {
+    "id": "heatmap",
+    "title": "Student observation heatmap",
+    "description": "Average 0\u2013100 observations by student and metric.",
+    "example": {
+      "observations": [
+        {
+          "student": "Student A",
+          "metric": "Engagement",
+          "value": 80
+        },
+        {
+          "student": "Student B",
+          "metric": "Engagement",
+          "value": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "outcomes",
+    "title": "Intervention outcomes",
+    "description": "Track before/after change against an explicit intervention identifier.",
+    "example": {
+      "outcomes": [
+        {
+          "student": "Student A",
+          "interventionId": "intervention-1",
+          "metric": "Quiz percent",
+          "before": 50,
+          "after": 70
+        }
+      ]
+    }
+  },
+  {
+    "id": "weighted-score",
+    "title": "Rubric score aggregation",
+    "description": "Aggregate human rubric ratings with explicit maxima and weights. This is not a calibrated model score.",
+    "example": {
+      "ratings": [
+        {
+          "competency": "Communication",
+          "score": 3,
+          "maximum": 4,
+          "weight": 1
+        },
+        {
+          "competency": "Problem solving",
+          "score": 4,
+          "maximum": 4,
+          "weight": 1
+        }
+      ],
+      "passPercent": 75
+    }
+  }
+]

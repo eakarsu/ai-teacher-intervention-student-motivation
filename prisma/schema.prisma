@@ -9,6 +9,7 @@ datasource db {
 }
 
 model User {
+  active       Boolean @default(true)
   id           String   @id @default(cuid())
   email        String   @unique
   name         String
@@ -70,6 +71,10 @@ model Student {
   classroom Classroom? @relation(fields: [classroomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  engagementSignalLinkedstudentId EngagementSignal[] @relation("EngagementSignal_studentId_linked")
+  learningGapLinkedstudentId LearningGap[] @relation("LearningGap_studentId_linked")
+  interventionLinkedstudentId Intervention[] @relation("Intervention_studentId_linked")
+  outcomeMeasureLinkedstudentId OutcomeMeasure[] @relation("OutcomeMeasure_studentId_linked")
 }
 
 model EngagementSignal {
@@ -84,6 +89,8 @@ model EngagementSignal {
   classroom Classroom? @relation(fields: [classroomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  studentId String?
+  studentLinked Student? @relation("EngagementSignal_studentId_linked", fields: [studentId], references: [id], onDelete: Restrict)
 }
 
 model LearningGap {
@@ -98,6 +105,8 @@ model LearningGap {
   classroom Classroom? @relation(fields: [classroomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  studentId String?
+  studentLinked Student? @relation("LearningGap_studentId_linked", fields: [studentId], references: [id], onDelete: Restrict)
 }
 
 model ExerciseRecommendation {
@@ -126,6 +135,9 @@ model Intervention {
   classroom Classroom? @relation(fields: [classroomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  studentId String?
+  studentLinked Student? @relation("Intervention_studentId_linked", fields: [studentId], references: [id], onDelete: Restrict)
+  outcomeMeasureLinkedinterventionId OutcomeMeasure[] @relation("OutcomeMeasure_interventionId_linked")
 }
 
 model MotivationalCampaign {
@@ -182,6 +194,10 @@ model OutcomeMeasure {
   classroom Classroom? @relation(fields: [classroomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  studentId String?
+  studentLinked Student? @relation("OutcomeMeasure_studentId_linked", fields: [studentId], references: [id], onDelete: Restrict)
+  interventionId String?
+  interventionLinked Intervention? @relation("OutcomeMeasure_interventionId_linked", fields: [interventionId], references: [id], onDelete: Restrict)
 }
 
 model ClassHeatmap {
@@ -210,4 +226,101 @@ model ResourceLibraryItem {
   classroom Classroom? @relation(fields: [classroomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+model WorkflowAnalysis {
+ id String @id @default(cuid())
+ actorId String
+ workflow String
+ subjectEntity String
+ subjectId String
+ input Json
+ evidence Json
+ evidenceHash String
+ result Json
+ model String
+ receipt String?
+ createdAt DateTime @default(now())
+ @@index([workflow, createdAt])
+}
+model RecordReview {
+ id String @id @default(cuid())
+ actorId String
+ entity String
+ entityId String
+ version String
+ reason String
+ createdAt DateTime @default(now())
+ @@unique([entity, entityId, version, actorId])
+}
+model UsageBucket {
+ id String @id
+ calls Int
+}
+model IssuedCredential {
+ token String @id
+ entity String
+ entityId String
+ version String
+ assertion Json
+ createdAt DateTime @default(now())
+ revokedAt DateTime?
+ @@index([entity, entityId, createdAt])
+}
+
+model DomainArtifact {
+ id String @id @default(cuid())
+ subjectEntity String
+ subjectId String
+ title String
+ content String
+ contentHash String
+ actorId String
+ approvedBy String?
+ createdAt DateTime @default(now())
+ @@index([subjectEntity, subjectId])
+}
+
+model RecordApproval {
+ id String @id
+ version String
+}
+model DomainExecution {
+ id String @id
+ actorId String
+ connectorId String
+ action String
+ subjectEntity String
+ subjectId String
+ version String
+ status String
+ result Json?
+ createdAt DateTime @default(now())
+}
+
+model WorkSession {
+ id String @id @default(cuid())
+ actorId String
+ respondentId String
+ subjectEntity String
+ subjectId String
+ questions Json
+ answers Json
+ currentQuestion String?
+ status String
+ deadline DateTime
+ createdAt DateTime @default(now())
+ @@index([respondentId, createdAt])
+}
+model SessionMedia {
+ id String @id @default(cuid())
+ sessionId String
+ questionId String
+ actorId String
+ contentType String
+ bytes Bytes
+ contentHash String
+ createdAt DateTime @default(now())
+ @@index([sessionId])
 }

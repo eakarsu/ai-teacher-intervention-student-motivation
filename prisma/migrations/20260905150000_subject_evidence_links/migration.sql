@@ -1,0 +1,10 @@
+ALTER TABLE "EngagementSignal" ADD COLUMN "studentId" TEXT;
+ALTER TABLE "EngagementSignal" ADD CONSTRAINT "EngagementSignal_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LearningGap" ADD COLUMN "studentId" TEXT;
+ALTER TABLE "LearningGap" ADD CONSTRAINT "LearningGap_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Intervention" ADD COLUMN "studentId" TEXT;
+ALTER TABLE "Intervention" ADD CONSTRAINT "Intervention_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "OutcomeMeasure" ADD COLUMN "studentId" TEXT;
+ALTER TABLE "OutcomeMeasure" ADD CONSTRAINT "OutcomeMeasure_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "OutcomeMeasure" ADD COLUMN "interventionId" TEXT;
+ALTER TABLE "OutcomeMeasure" ADD CONSTRAINT "OutcomeMeasure_interventionId_fkey" FOREIGN KEY ("interventionId") REFERENCES "Intervention"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

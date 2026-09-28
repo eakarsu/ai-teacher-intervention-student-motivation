@@ -124,21 +124,21 @@ export const entities: Record<string, EntityConfig> = {
 export const workflows: WorkflowConfig[] = [
   {
     slug: "gap-triage",
-    title: "Gap Triage",
+    title: "Draft: Gap Triage",
     description: "Prioritize learning gaps by risk.",
     prompt: "You are an intervention coordinator. Prioritize the student's learning gaps by risk and dependency order for instruction.",
     fields: ["student", "gaps", "recentScores", "attendance"],
   },
   {
     slug: "intervention-plan",
-    title: "Intervention Planner",
+    title: "Draft: Intervention Planner",
     description: "Design an intervention with motivational elements.",
     prompt: "You are an instructional coach. Design an intervention plan: exercises, motivational hooks, cadence, and success checkpoints.",
     fields: ["studentProfile", "gap", "motivators", "timeAvailable"],
   },
   {
     slug: "guardian-letter",
-    title: "Guardian Letter Drafter",
+    title: "Draft: Guardian Letter Drafter",
     description: "Draft a supportive guardian communication.",
     prompt: "You are a teacher. Draft a supportive guardian letter about the student's situation: concrete observations, joint plan, positive framing.",
     fields: ["student", "observations", "plan", "tone"],

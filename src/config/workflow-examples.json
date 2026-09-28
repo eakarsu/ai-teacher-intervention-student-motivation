@@ -1,0 +1,98 @@
+{
+  "gap-triage": [
+    {
+      "id": "example-1",
+      "label": "Fraction concepts",
+      "values": {
+        "student": "Example student A",
+        "gaps": "Equivalent fractions and multi-step word problems",
+        "recentScores": "60%, 65%, 58% on three fictional checks",
+        "attendance": "18 of 20 sessions; ask about barriers without inferring motivation."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Reading evidence",
+      "values": {
+        "student": "Example student B",
+        "gaps": "Citing text evidence in written responses",
+        "recentScores": "Rubric 2/4, 2/4, 3/4",
+        "attendance": "20 of 20 sessions; observations limited to classroom work."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Attendance context",
+      "values": {
+        "student": "Example student C",
+        "gaps": "Missed foundational algebra lessons",
+        "recentScores": "55%, missing, 62%; missing work is not a zero score",
+        "attendance": "14 of 20 sessions; attendance context requires a conversation."
+      }
+    }
+  ],
+  "intervention-plan": [
+    {
+      "id": "example-1",
+      "label": "Visual practice",
+      "values": {
+        "studentProfile": "Example learner A benefits from worked visual examples",
+        "gap": "Equivalent fractions",
+        "motivators": "Drawing and puzzle activities, based on learner feedback",
+        "timeAvailable": "15 minutes three times per week for four weeks"
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Peer discussion",
+      "values": {
+        "studentProfile": "Example learner B participates confidently in small groups",
+        "gap": "Supporting claims with text evidence",
+        "motivators": "Peer discussion and choice of reading topic",
+        "timeAvailable": "20 minutes twice per week for three weeks"
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Flexible catch-up",
+      "values": {
+        "studentProfile": "Example learner C has interrupted attendance; avoid assumptions about cause",
+        "gap": "Prerequisite algebra skills",
+        "motivators": "Short achievable checkpoints and flexible scheduling",
+        "timeAvailable": "10 minutes daily when present, reviewed after two weeks"
+      }
+    }
+  ],
+  "guardian-letter": [
+    {
+      "id": "example-1",
+      "label": "Progress update",
+      "values": {
+        "student": "Example student A",
+        "observations": "Completes visual fraction tasks; word problems remain difficult.",
+        "plan": "Three short guided practice sessions weekly and a two-week review.",
+        "tone": "Warm, specific and collaborative; fictional example, no diagnosis."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Collaborative support",
+      "values": {
+        "student": "Example student B",
+        "observations": "Contributes verbally but written evidence citations are inconsistent.",
+        "plan": "Model one response, practice with a checklist and invite family observations.",
+        "tone": "Respectful and strengths-based; avoid blame or unsupported inferences."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Celebrate improvement",
+      "values": {
+        "student": "Example student C",
+        "observations": "Three recent assignments show clearer explanations and more completed steps.",
+        "plan": "Continue current support and agree on the next reachable milestone.",
+        "tone": "Encouraging and factual; mention only the supplied observations."
+      }
+    }
+  ]
+}

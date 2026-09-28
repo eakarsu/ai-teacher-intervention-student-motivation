@@ -1,0 +1,564 @@
+{
+  "Classroom": {
+    "name": "Classroom",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teacher",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "subject",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "gradeLevel",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "enrollment",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      }
+    ]
+  },
+  "Student": {
+    "name": "Student",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "studentId",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "grade",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "engagementScore",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "enrolledAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "EngagementSignal": {
+    "name": "EngagementSignal",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "signalType",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "strength",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "source",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "observedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      },
+      {
+        "name": "studentId",
+        "kind": "string",
+        "required": false,
+        "relation": "Student"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "LearningGap": {
+    "name": "LearningGap",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "concept",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "evidence",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "severity",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "identifiedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      },
+      {
+        "name": "studentId",
+        "kind": "string",
+        "required": false,
+        "relation": "Student"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "ExerciseRecommendation": {
+    "name": "ExerciseRecommendation",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "concept",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "exercise",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "difficulty",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "source",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "Intervention": {
+    "name": "Intervention",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "kind",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "plan",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "startedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "owner",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      },
+      {
+        "name": "studentId",
+        "kind": "string",
+        "required": false,
+        "relation": "Student"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "MotivationalCampaign": {
+    "name": "MotivationalCampaign",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "strategy",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "audience",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "launchedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "outcome",
+        "kind": "string",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "TeacherAlert": {
+    "name": "TeacherAlert",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "concern",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "priority",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "raisedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "action",
+        "kind": "string",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "GuardianContact": {
+    "name": "GuardianContact",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "guardian",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "channel",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "purpose",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "sentAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "OutcomeMeasure": {
+    "name": "OutcomeMeasure",
+    "fields": [
+      {
+        "name": "studentRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "before",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "after",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "window",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      },
+      {
+        "name": "studentId",
+        "kind": "string",
+        "required": false,
+        "relation": "Student"
+      },
+      {
+        "name": "interventionId",
+        "kind": "string",
+        "required": false,
+        "relation": "Intervention"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "ClassHeatmap": {
+    "name": "ClassHeatmap",
+    "fields": [
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "gridRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "avgValue",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "computedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  },
+  "ResourceLibraryItem": {
+    "name": "ResourceLibraryItem",
+    "fields": [
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "kind",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "conceptTag",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "url",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "difficulty",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "classroomId",
+        "kind": "string",
+        "required": false,
+        "relation": "Classroom"
+      }
+    ],
+    "parent": {
+      "field": "classroomId",
+      "entity": "Classroom"
+    }
+  }
+}
