@@ -15,6 +15,11 @@ if [ ! -d node_modules ]; then
   npm install
 fi
 
+if [ -z "${NEXTAUTH_SECRET:-}" ] || [ "${#NEXTAUTH_SECRET}" -lt 32 ]; then
+  echo "NEXTAUTH_SECRET must be set to at least 32 characters. Copy .env.example to .env and set a real secret." >&2
+  exit 1
+fi
+
 if [ -n "${DATABASE_URL:-}" ]; then
   npx prisma migrate deploy
 else
